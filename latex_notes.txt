@@ -1,0 +1,819 @@
+========================================================================
+
+						Latex - Introduction
+
+========================================================================
+
+
+Line Breaks
+------------
+
+--> Soft Return = \\ (next sentance does not comes as a new paragraph- ie without indentation)
+--> Hard Return = blank line (next sentance begin as a new paragraph - ie with indentation)
+
+
+Inline Math Mode (Inside single $)
+----------------------------------
+
+--> $ f(x) = 6x^2 + 2x + 4 $
+
+
+Display Style Math Mode (Inside double $$)
+-------------------------------------------
+
+--> Math mode where equation is centered on it's own line(just like maths textbooks)
+--> $$ f(x) = 6x^2 + 2x + 4 $$
+
+
+Math Mode + Don't add line breaks in between equations (Enclose equation in {})
+--------------------------------------------------------------------------------
+
+--> $ {f(x) = 6x^2 + 2x + 4} $
+
+
+Superscripts (Use ^) (Use ^{digits} if grouping is required)
+--------------------------------------------------------------
+
+--> $ x^2 $
+--> $ x^{24} $
+
+
+Subscripts (Use _)
+------------------
+
+--> $ x_2 $
+--> $ x^{24} $
+
+
+a, b, c ... z (ldots and cdots)
+-------------------------------
+
+--> lower dots vs center dots
+--> a, b, c, \ldots, z 
+
+
+Greek Letters
+-------------
+
+--> $ \\pi $ (Small Letter pi)
+--> $ \\Pi $ (Capital Letter pi)
+--> $ \\alpha $
+--> $ area = \pi r^2 $
+
+
+Trigonometric Functions
+-----------------------
+
+--> $ y = \sin x $
+--> $ y = \sin \theta $
+--> $ y = \sin^{-1} x $
+
+
+Log Functions
+---------------
+
+--> $ y = \log x $
+--> $ y = \log_10 x $
+
+
+Roots
+-----
+
+--> $ \sqrt{6} $ means square root of 6
+--> $ \sqrt[3]{6} $ means cube root of 6
+
+
+
+Get rid of page number
+-----------------------
+
+--> \documentclass[11pt]{article}
+    \pagestyle{empty} this line get rid of page number
+
+
+
+fractions
+---------------------------
+
+--> $ \frac{2}{3} $ means 2 by 3
+
+
+
+Inline math letters will be smaller whereas displayed math will be bigger. How to get bigger fonts in inline math
+-------------------------------------------------------------------------------------------------------------------
+
+--> $\displaystyle \frac{2}{3} $ or there is a simple way as shown below
+
+--> $ \dfrac{2}{3} $ but this requires use of additional package
+
+
+
+Add spacing between 2 paragraphs escpecially when fractional from different lines are messing with each other (Add softreturn then [points])
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+--> About $ \frac{2}{3} $ of the glass is full\\[6pt]
+    About $ \frac{2}{3} $ of the glass is full
+
+
+Special symbol usage example
+----------------------------
+
+--> $ a(b+c) = ab + ac $ for all $ a, b, c \in \mathbb{R} $ here belongs and special Real No symbols are used. We need one of the packages (amsfonts, amssymb, amsmath)
+
+
+
+Turn Off paragraph indentation
+------------------------------
+
+--> /parindent 0px
+
+
+
+Use multiple packages
+----------------------
+
+--> \usepackage {amsfonts, amssymb, amsmath}
+
+
+
+Special Symbols like {, $ etc. (prepend with \)
+-----------------------------------------------
+
+--> $ \{1, 2, 3\} $ will print {1, 2, 3}
+--> The movie ticket costs \$20.34
+
+
+Auto expand the bracket size according to the content inside it (Use /left and /right before left/right paranthesis)
+--------------------------------------------------------------------------------------------------------------------
+
+--> $$ 2 \left (\frac{1}{x^2 - 1} \right ) $$
+
+
+Angular Brackets (Use langle, rangle)
+-------------------------------------
+
+--> $$ 2 \left \langle \frac{1}{x^2 - 1} \right \rangle $$
+
+
+
+Absolute Value symbol (Use pipe which is |)
+---------------------------
+
+--> $$ 2 \left | \frac{1}{x^2 - 1} \right | $$
+
+
+
+Auto expand the bracket size according to the content inside it but only on one side (Use \left and \right but use . to tell not to display on one side)
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--> $$ \left. \frac{dy}{dx} \right |_{x=1} $$
+
+
+
+Tabular
+---------
+--> c = center aligned column can be left and right as well
+--> | = vertical lines
+--> \hline = horizontal lines
+--> & = to separate columns 
+
+\begin{tabular}{|c||c|c|c|c|c|}
+
+\hline
+$x$    & 1  & 2  & 3  & 4  & 5 \\ \hline
+$f(x)$ & 10 & 11 & 12 & 13 & 14 \\ \hline
+
+\end{tabular}
+
+
+
+Adding vertical space between tables
+-----------------------------------
+
+--> \vspace{1cm}
+
+
+
+Add custom space for rows to fit items (if row contains fraction for instance)
+------------------------------------------------------------------------------
+
+--> H = withhout H compiler will decide where the table will fit best an move our table there. H tells I want it right here
+--> to add custom space we need to enclose tabular inside a table and specify array strech value (need float package)
+
+\documentclass[11pt]{article}
+
+\begin{document}
+
+\begin{table}
+\def\arraystretch{1.5}
+
+\begin{tabular}{|c||c|c|c|c|c|}
+\hline
+$x$ & 1  & 2  & 3  & 4  & 5 \\ \hline
+$f(x)$ & $\frac{1}{2}$ & 11 & 12 & 13 & 14 \\ \hline
+\end{tabular}
+
+\end{table}
+
+\end{document}
+
+
+
+Centering Table and Captioning
+------------------------------
+
+\begin{table}
+\centering
+\def\arraystretch{1.5}
+
+\begin{tabular}{|c||c|c|c|c|c|}
+\hline
+$x$ & 1  & 2  & 3  & 4  & 5 \\ \hline
+$f(x)$ & $\frac{1}{2}$ & 11 & 12 & 13 & 14 \\ \hline
+\end{tabular}
+\caption{These values represents function $f(x)$}
+\end{table}
+
+
+
+word wrapping in case of long paragrahs inside a column
+---------------------------------------------------------
+
+--> \begin{tabular}{|c||c|c|c|c|p{3in}|} instead of c you can have paragraphs(p with column width)
+
+
+
+Creating equation arrays (better use align rather than \eqnarr)
+---------------------------------------------------------------
+
+begin{align}
+
+4x^2-15=1
+x=/frac{16}{4}
+ =4
+
+end{align}
+
+
+
+Disable numbering
+------------------
+
+--> use align* in both begin and end
+
+
+
+by default align elements are in math mode how to add text(spaces are ignored in math mode)
+--------------------------------------------------------------------------------------------
+
+
+--> To add text
+
+begin{align}
+
+4x^2-15=1\text{place your text here}
+
+end{align}
+
+
+
+align around equal sign(add& before =)
+-------------------------------------
+
+begin{align}
+
+4x^2-15&=1
+x&=/frac{16}{4}
+&=4
+
+end{align}
+
+
+
+Numbered List(enumerate), Bulleted(itemize)
+--------------------------------------------
+
+\begin{enumerate}
+\item one
+\item two
+\item three
+\end{enumerate}
+
+
+
+A. instead of 1.2.3 (Add [A.] after enumerate)
+------------------------------------------------
+
+--> enumerate package
+
+\begin{enumerate}[A.]
+\item one
+\item two
+\item three
+\end{enumerate}
+
+
+Start counting from 7 (Add \setcounter{enumi}{6} after enumerate)
+---------------------------
+
+\begin{enumerate}\setcounter{enumi}{6}
+\item one
+\item two
+\item three
+\end{enumerate}
+
+
+
+pagebreak (Use \pagebreak)
+---------------------------
+
+--> \pagebreak
+
+
+
+A numbered list which doesn't show numbers(Add [] after each item)
+------------------------------------------------------------------
+
+\begin{enumerate}
+\item[] one
+\item[] two
+\item[] three
+\end{enumerate}
+
+
+
+Bold and Italics
+----------------
+
+--> \textit{italizised}
+--> \textbf{bold faced}
+
+
+hyperlinks
+----------
+
+--> hyperref package
+--> \url{https://www.google.com}
+--> \href{https://www.google.com}{click here to go to google.com}
+
+
+Making things smaller and larger (large, Large, huge, Huge - normalsize - small, scriptsize, tiny)
+---------------------------------------------------------------------------------------------------
+
+--> /begin{large} text /end{large}
+
+
+Text Justification (center, flushleft, flushright)
+--------------------------------------------------
+
+--> /begin{center} text /end{center}
+
+
+Add title Section to the document
+--------------------------------
+
+\title{My Title}
+\author{My Name}
+\date{\today}     or you can put manual date here e.g July 26, 2020 
+
+\begin{document}
+\maketitle
+
+
+
+Create Sections and Sub-Sections (Add section* to suppress numbering)
+---------------------------------------------------------------------
+
+\begin{document}
+\tableofcontents      <== This will magically create table of contents with section and page numbers automatically
+
+\section{Linear Functions}
+	\subsection{Slope-Intercept Form}
+		\subsubsection{Example 1}
+		\subsubsection{Example 2}
+	\subsection{Point-Slope Form}
+	\subsection{Standard Form}
+\section{Quadratic Functions}
+
+
+
+a4paper
+-------
+
+/documentclass[11pt, a4paper]{article}
+
+
+
+comments
+--------
+
+%
+
+
+Useful Packages 1: geopmetry (for margin settings)
+--------------------------------------------------
+
+\usepackage[margin = 1in]{geometry}      <== 1 inch margin on all sides 
+
+\usepackage[top = 1in, bottom = 1in, left = 0.5in, right = 0.5in]{geometry}     
+
+
+
+Useful Packages 2: amsfonts
+----------------------------
+
+set of real numbers $ \mathbb{R} $
+set of inetegers $ \mathbb{Z} $
+set of rational numbers $ \mathbb{Q} $
+
+
+
+Useful Packages 3: xcolor 
+------------------------
+
+--> \textcolor{blue}{your blue text goes here}
+
+
+
+
+Useful Packages 3: graphix 
+---------------------------
+
+--> Usage
+
+--> \includegraphics[scale = 0.5]{image.png}
+--> \includegraphics[width = 3.5in]{image.png}
+--> \includegraphics[width = 0.5\textwidth]{image.png}    <== here text width is almost pagewidth but excluding the margins
+
+
+--> Better placement using figure
+
+\begin{figure}[H}      <== H means here otherwise compiler sometimes go for the best fit other options are (t = top, b = bottom etc.) Requires float package
+
+\centering
+\includegraphics[width = 3.5in]{image.png}
+\caption{Infographics}
+
+\end{figure}
+
+
+Macros - Constants
+-------------------
+
+\def\eq1{\dfrac{x}{3x^2+x+1}}    ==> now you can use \eq1 anywhere in the doc and it will be replaced by the actual equation 
+
+
+
+
+Macros - Commands
+----------------------
+
+\newcommand{\redwarning}{\textcolor{red}{warning}}
+
+\redwarning
+
+
+
+Macros - Commands with parameters
+---------------------------------
+
+\newcommand{\coloredtext}[2]{\textcolor{#1}{#2}}
+
+\coloredtext{blue}{this is a blue text}
+
+
+
+What if you want to exclude some letters inside the math mode (use mathrm)
+----------------------------------------------------------------------------
+
+$ \mathrm{D}_f : (-\infty, \infty) $    <== If we don't remove math mode from D normally it will be italizised
+
+
+Some calculus notations
+------------------------
+
+$ \lim \limits_{x \to \infty} f(x) $
+
+$ \displaystyle{\int \sin x \, dx $   <== without displaystyle integration symbol will be smaller to accomodate line height and \, adds space
+
+$ \displaystyle{\sum \limits_{n=1}^{infty}ar^n = a + ar + ar^2 + \cdots + ar^n} $
+
+$ \vec{v} = v_1 \vec{i} + v_2 \vec{j} = \langle v_1, v_2 \rangle $ 
+
+$ \Delta x $
+
+
+========================================================================
+
+								Beamer
+
+========================================================================
+
+Title Page in Beamer
+--------------------
+
+\documentclass{beamer}
+
+\title[- short title -]{Your Title Here}
+\subtitle{Subtitle Here}
+\author{Your Name}
+\institute{Institute Name}
+\date{}    % No date but you can put a date or \today
+
+\begin{document}
+
+\begin{frame} % in beamer you a frame can contain one or more slides
+
+\titlepage
+
+\end{frame}
+
+\end{document}
+
+
+
+Using Themes
+------------
+
+--> Include the following in the preamble
+
+\usetheme{Warsaw}
+
+
+
+Using colorthemes
+----------
+
+--> Include the following in the preamble
+
+\usecolortheme{crane}
+
+
+
+Using custom colors in the theme
+--------------------------------
+
+\documentclass{beamer}
+
+\usetheme{Warsaw}
+
+\definecolor{mygreen}{rgb}{.125, .5, .25} 	% visit latexcolor.com for color examples
+\usecolortheme[named = mygreen]{structure}
+
+
+
+
+Content Slide Example
+---------------------
+
+\begin{frame}{Title of my slide}
+
+\begin{enumerate}
+
+\item[one]
+\item[two]
+\item[three]
+
+\end{enumerate}
+
+\end{frame}
+
+
+
+Arranging the list to top
+--------------------------
+
+\begin{frame}[t]{Title of my slide} \vspace{20pt}   % here t = top
+
+\begin{enumerate}
+
+\item[one]
+\item[two]
+\item[three]
+
+\end{enumerate}
+
+\end{frame}
+
+
+
+metropolis theme
+----------------
+
+--> Add the following in the preamble
+
+% to get a visual visula clue on how many slides are left
+\usetheme[progressbar=frametitle]{metropolis}
+% add the progressbar as fraction (E.g 1/3)  
+\setbeamertemplate{frame numbering}[fraction]
+\useoutertheme{metropolis}
+\useinnertheme{metropolis}
+\usefonttheme{metropolis}
+\usecolortheme{spruce}
+\setbeamercolor{background canvas}{bg = white}
+
+
+
+Adding a block inside a frame
+------------------------------
+
+\begin{frame}[t]{Functions} \vspace{4pt}
+
+\begin{block}{Definition of a function}
+
+\vspace{4pt}
+
+A function is a function that is different from all functions
+
+\vspace{4pt}
+
+\end{block}
+
+
+\end{frame}
+
+
+Put a block visually in a color box
+-----------------------------------
+
+\begin{document}
+\metroset{block = fill}
+
+
+Use of only [onlyonslide is better than only, discussed below](portion of content visible only in one slide not in the other) 
+-----------------------------------------------------------------------------------------------------------------------------
+
+--> Disadvantage of only: It does not hide the other content but to remove so style can get messy
+
+--> Example: A fill in the blanks question in one slide and the answer in the next one
+
+\begin{frame}
+
+% Set $D$ is called the \line(1, 0){50} of the function
+
+% the above question is implemented as line in first slide
+% and question with proper answer(domain) on the next slide
+
+Set $D$ is called the
+\only<1>{\line(1, 0){50}}
+\only<2>{\textcolor{magenta}{domain}}
+of the function
+
+\end{frame}
+
+
+
+Arranging items as columns in a slide 
+--------------------------------------
+
+\begin{frame}{Yet another title} \vspace{10pt}
+
+% below line will take care of the alignment acc. text width
+\begin{columns}[onlytextwidth]
+
+% first column start
+\column{0.4\textwidth}
+
+$\sqrt{x^2} = $ \\[10pt]
+
+\begin{enumerate}[(A)]	% A, B, C instead of numbers
+
+\item $x$
+\item $-x$
+\item $|x|$
+
+\end{enumerate}
+
+% first column end
+
+% second column start
+\column{0.6\textwidth}
+
+% include a case equation which appears only in slide 3
+\only<3>
+{
+$
+\sqrt{x^2} = 
+\begin{cases}
+-x, & x<0 \\ % & is used to align eqn right of comma
+x, & x\geq 0 % & is used to align eqn right of comma
+\end{cases}
+$ 
+\\[10pt]
+}
+
+% add image which appears after 2(including 2) for the current frame
+\only<2->
+{
+\includegraphics[width=0.6\textwidth]{limit}
+}
+% second column end
+
+\end{columns}
+
+\end{frame}
+
+
+Use of multicols(better than columns in enumerate becoz auto arrange items)
+---------------------------------------------------------------------------
+
+--> \usepackage{multicol}
+
+\begin{frame}[t]{Parent Functions} \vspace{4pt}
+
+Name and sketch graph for each of the functions:
+
+\begin{enumerate}
+
+% multicols work best with enumeration multicol package required
+% can also set transparency 
+
+\begin{multicols}{3}
+
+\item $y = x $
+\item $y = |x| $
+\item $y = x^2 $
+\item $y = x^3 $
+\item $y = x^b $
+\item $y = \sqrt{x} $
+\item $y = \sqrt[3]{x} $
+\item $y = \frac{1}{x} $
+\item $y = 2^x $
+\item $y = e^x $
+\item $y = \ln x $
+\item $y = \frac{1}{1+e^{-x}} $
+\item $y = \sin x $
+\item $y = \cos x $
+\item $y = \tan x $
+
+\end{multicols}
+
+\end{enumerate}
+
+\end{frame}
+
+
+
+Use of onslide
+------------------
+
+\begin{frame}[t]{Parent Functions} \vspace{4pt}
+
+Name and sketch graph for each of the functions:
+
+\begin{enumerate}
+
+% multicols work best with enumeration multicol package required
+
+\begin{multicols}{3}
+
+% lets display all 15 items 5 at a time in a slide
+% can also set transparency of the items which are displayed
+% using \setbeamercovered{transparent=15} in preamble
+% better than \only because content is only hidden hence
+% it doesn't mess with styling while displaying item one by one
+
+\item $y = x $
+\item $y = |x| $
+\item $y = x^2 $
+\item $y = x^3 $
+\item $y = x^b $
+
+% display this from slide 2 onwards
+\onslide<2->
+{
+\item $y = \sqrt{x} $
+\item $y = \sqrt[3]{x} $
+\item $y = \frac{1}{x} $
+\item $y = 2^x $
+\item $y = e^x $
+}
+
+
+% display this from slide 3 onwards
+\onslide<3->
+{
+\item $y = \ln x $
+\item $y = \frac{1}{1+e^{-x}} $
+\item $y = \sin x $
+\item $y = \cos x $
+\item $y = \tan x $
+}
+
+\end{multicols}
+
+\end{enumerate}
+
+\end{frame}
+
+
+
+Special appearance for the very last slide
+-------------------------------------------
+
+\begin{frame}[standout]
+
+\flushleft
+Homework: p.342 \#7-21
+
+\end{frame}
